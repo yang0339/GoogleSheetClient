@@ -1,15 +1,15 @@
 # this script test the main program
 
 import sys
-sys.path.append('/home/fredyang/GitHub/GoogleSheetClient/google-sheet-downloader')
+sys.path.append('C:/Users/fredyang/Documents/GitHub/GoogleSheetClient/GoogleSheetClient')
 from main_program import *
 scope = ['https://spreadsheets.google.com/feeds']
 workbook = 'sg_blogs_retrieved_data'
-json_file = '/home/fredyang/GitHub/GoogleSheetClient/MSO-projects-87dd9cc7a873.json'
+json_file = 'C:/Users/fredyang/Documents/GitHub/GoogleSheetClient/MSO-projects-87dd9cc7a873.json'
 #  create a instance
-ins = GoogleSheetDownloader(scope=scope, json_file=json_file, workbook=workbook)
+ins = GoogleSheetDownloader(scope=scope, json_file=json_file)
 # extract all data as in json records
-records = ins.get_all_worksheet()
+records = ins.get_all_worksheet(workbook=workbook)
 df = ins.to_dataframe(records=records)
 ins.upload_dataframe(df=df, workbook='sg_blogs_retrieved_data', sheet_name='test')
 

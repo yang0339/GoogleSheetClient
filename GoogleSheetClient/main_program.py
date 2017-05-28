@@ -2,7 +2,7 @@ import gspread
 
 
 class GoogleSheetDownloader(object):
-    def __init__(self, scope, json_file, workbook):
+    def __init__(self, scope, json_file):
         """
         credentials to access google sheet
         follow https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html
@@ -10,7 +10,6 @@ class GoogleSheetDownloader(object):
         """
         self.scope = scope
         self.json_file = json_file
-        self.workbook = workbook
 
 
     def connection(self):
@@ -20,16 +19,16 @@ class GoogleSheetDownloader(object):
         print("connection established.\n")
         return creds
 
-    def get_one_worksheet(self, sheet_name):
+    def get_one_worksheet(self, workbook, sheet_name):
         gc = gspread.authorize(self.connection())
-        sh = gc.open(self.workbook).worksheet(sheet_name)
+        sh = gc.open(workbook).worksheet(sheet_name)
         records = sh.get_all_records()
         print("Worksheet \"%s\" has been downloaded."%sheet_name)
         return records
 
-    def get_all_worksheet(self):
+    def get_all_worksheet(self, workbook):
         gc = gspread.authorize(self.connection())
-        sh = gc.open(self.workbook)
+        sh = gc.open(workbook)
         worksheet_list = sh.worksheets()
         records = []
         for item in worksheet_list:
