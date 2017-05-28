@@ -30,7 +30,7 @@ An example:
 ```python
 # extract all data as in json records
 workbook = 'sg_blogs_retrieved_data'
-records = ins.get_all_worksheet(workbook=workbook)
+records = ins.get_all_worksheet(workbook=workbook) # all sheets have to be in the same format.
 records_from_one_sheet = ins.get_one_worksheet(workbook=workbook, sheet_name="test")
 # convert to dataframe
 import pandas as pd
