@@ -13,10 +13,9 @@ import sys
 sys.path.append('/home/fredyang/GitHub/GoogleSheetClient/google-sheet-downloader')
 from main_program import *
 scope = ['https://spreadsheets.google.com/feeds']
-workbook = 'sg_blogs_retrieved_data'
 json_file = '/home/fredyang/GitHub/GoogleSheetClient/MSO-projects-87dd9cc7a873.json'
 #  create a instance
-ins = GoogleSheetDownloader(scope=scope, json_file=json_file, workbook=workbook)
+ins = GoogleSheetDownloader(scope=scope, json_file=json_file)
 ```
 
 
@@ -30,7 +29,9 @@ Serveral functions:
 An example:
 ```python
 # extract all data as in json records
-records = ins.get_all_worksheet()
+workbook = 'sg_blogs_retrieved_data'
+records = ins.get_all_worksheet(workbook=workbook)
+records_from_one_sheet = ins.get_one_worksheet(workbook=workbook, sheet_name="test")
 # convert to dataframe
 import pandas as pd
 df = ins.to_dataframe(records=records)
