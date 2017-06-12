@@ -10,10 +10,10 @@ follow [this link](https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-w
 Use absolute path to refer to system path as well as json_file path
 ```python
 import sys
-sys.path.append('/home/fredyang/GitHub/GoogleSheetClient/google-sheet-downloader')
+sys.path.append('/PATH2ThisClient/google-sheet-downloader')
 from main_program import *
 scope = ['https://spreadsheets.google.com/feeds']
-json_file = '/home/fredyang/GitHub/GoogleSheetClient/MSO-projects-87dd9cc7a873.json'
+json_file = 'PATH2JsonFile/xxx.json'
 #  create a instance
 ins = GoogleSheetDownloader(scope=scope, json_file=json_file)
 ```
