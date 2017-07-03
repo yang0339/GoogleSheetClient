@@ -42,7 +42,7 @@ ins.connection()
 
 - **get_all_worksheet(workbook)**: get all sheets from a workbook
 
-- **to_dataframe(records)**: get_XXX_worksheet returns in json, use to_dataframe to convert to pandas DataFrame
+- **to_dataframe(records)**: get_XXX_worksheet returns in json, use to_dataframe to convert to pandas DataFrame (NOTES: this function does not belong to any classes thus *do not operate with instances*)
 
 - **upload_dataframe(df, workbook, sheet_name)**: upload dataframe to a Google Drive. The workbook have to be created at first place.
 
