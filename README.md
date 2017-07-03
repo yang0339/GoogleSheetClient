@@ -8,7 +8,7 @@ Created Python Package.
 
 ### Before using the package:
 follow [this link](https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html) as a step-by-step guide to enable Google Drive API, get credentials and share Workbooks.
-<br><br>
+<br>
 Notes: The particular workbook to work with has to be **SHARED** with the email specified in json file.
 
 
