@@ -2,21 +2,24 @@ import gspread
 
 
 class GoogleSheetDownloader(object):
-    def __init__(self, scope, json_file):
+    def __init__(self, json_file):
         """
         credentials to access google sheet
         follow https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html
         for step-by-step guide
         """
-        self.scope = scope
+        self.scope = ['https://spreadsheets.google.com/feeds']
         self.json_file = json_file
 
 
     def connection(self):
         from oauth2client.service_account import ServiceAccountCredentials
-        creds = ServiceAccountCredentials.from_json_keyfile_name(self.json_file, self.scope)
-        # client = gspread.authorize(creds)
-        print("connection established.\n")
+        try:
+            creds = ServiceAccountCredentials.from_json_keyfile_name(self.json_file, self.scope)
+            # client = gspread.authorize(creds)
+            print("connection established.\n")
+        except:
+            print("Connection failed. Check json file, worksheet configurations.")
         return creds
 
     def get_one_worksheet(self, workbook, sheet_name):

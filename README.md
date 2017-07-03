@@ -2,39 +2,57 @@
 Automatic Downloading from and Uploading to Google Sheet from local settings
 
 2017-05-24
-Created.
+Created. <br>
+2017-07-03
+Created Python Package.
 
-Set-ups:
+### Before using the package:
 follow [this link](https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html) as a step-by-step guide to enable Google Drive API, get credentials and share Workbooks.
+<br><br>
+Notes: The particular workbook to work with has to be **SHARED** with the email specified in json file.
 
-Use absolute path to refer to system path as well as json_file path
+
+### installation
+Make sure you installed **pip & git** already. In the command line, type in
 ```python
-import sys
-sys.path.append('/PATH2ThisClient/google-sheet-downloader')
-from main_program import *
-scope = ['https://spreadsheets.google.com/feeds']
-json_file = 'PATH2JsonFile/xxx.json'
-#  create a instance
-ins = GoogleSheetDownloader(scope=scope, json_file=json_file)
+pip install git+https://github.com/yang0339/TextPreViz.git
 ```
 
+### Step-by-Step Guide
+1. import modules
+```python
+from GoogleSheetClient.main_program import *
+```
+2. Use absolute path to refer to the path json_file is stored
+```python
+json_file = 'PATH2JsonFile/xxx.json'
+```
+3. Create an instance
+```python
+ins = GoogleSheetDownloader(json_file=json_file)
+```
+4. Test the connection
+```python
+ins.connection()
+```
 
-Serveral functions:
+### Functionalities:
 
-- ***get_one_worksheet***: get a particular sheet from a workbook
-- ***get_all_worksheet***: get all sheets from a workbook
-- ***to_dataframe***: get_XXX_worksheet returns in json, use to_dataframe to convert to pandas DataFrame
-- ***upload_dataframe***: upload dataframe to a Google Drive, but the workbook have to be created at first place.
+- ***get_one_worksheet(workbook, sheet_name)***: get a particular sheet from a workbook
+- ***get_all_worksheet(workbook)***: get all sheets from a workbook
+- ***to_dataframe(records)***: get_XXX_worksheet returns in json, use to_dataframe to convert to pandas DataFrame
+- ***upload_dataframe(df, workbook, sheet_name)***: upload dataframe to a Google Drive. The workbook have to be created at first place.
 
-An example:
+### Use Case:
 ```python
 # extract all data as in json records
-workbook = 'sg_blogs_retrieved_data'
+workbook = 'example_workbook'
 records = ins.get_all_worksheet(workbook=workbook) # all sheets have to be in the same format.
 records_from_one_sheet = ins.get_one_worksheet(workbook=workbook, sheet_name="test")
 # convert to dataframe
 import pandas as pd
 df = ins.to_dataframe(records=records)
-# upload dataframe
-ins.upload_dataframe(df=df, workbook='sg_blogs_retrieved_data', sheet_name='test')
+df2 = ins.to_dataframe(records=records_from_one_sheet)
+# upload dataframe: workbook and sheet have to be created before hand.
+ins.upload_dataframe(df=df, workbook='example_workbook2', sheet_name='test2')
 ```

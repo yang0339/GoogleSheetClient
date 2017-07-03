@@ -3,8 +3,10 @@
 """
 google-sheet-download
 ~~~~~~~
-Use gspread Google Drive API service to download data in designated workbooks
+Use gspread Google Sheet API service to download data in designated workbooks
 """
 
-__version__ = '0.0.1'
+__version__ = '0.1'
 __author__ = 'FRED YANG'
+
+from GoogleSheetClient.main_program import *
