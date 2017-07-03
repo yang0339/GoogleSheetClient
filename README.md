@@ -38,10 +38,13 @@ ins.connection()
 
 ### Functionalities:
 
-- ***get_one_worksheet(workbook, sheet_name)***: get a particular sheet from a workbook
-- ***get_all_worksheet(workbook)***: get all sheets from a workbook
-- ***to_dataframe(records)***: get_XXX_worksheet returns in json, use to_dataframe to convert to pandas DataFrame
-- ***upload_dataframe(df, workbook, sheet_name)***: upload dataframe to a Google Drive. The workbook have to be created at first place.
+- **get_one_worksheet(workbook, sheet_name)**: get a particular sheet from a workbook
+
+- **get_all_worksheet(workbook)**: get all sheets from a workbook
+
+- **to_dataframe(records)**: get_XXX_worksheet returns in json, use to_dataframe to convert to pandas DataFrame
+
+- **upload_dataframe(df, workbook, sheet_name)**: upload dataframe to a Google Drive. The workbook have to be created at first place.
 
 ### Use Case:
 ```python
@@ -51,8 +54,8 @@ records = ins.get_all_worksheet(workbook=workbook) # all sheets have to be in th
 records_from_one_sheet = ins.get_one_worksheet(workbook=workbook, sheet_name="test")
 # convert to dataframe
 import pandas as pd
-df = ins.to_dataframe(records=records)
-df2 = ins.to_dataframe(records=records_from_one_sheet)
+df = to_dataframe(records=records)
+df2 = to_dataframe(records=records_from_one_sheet)
 # upload dataframe: workbook and sheet have to be created before hand.
 ins.upload_dataframe(df=df, workbook='example_workbook2', sheet_name='test2')
 ```

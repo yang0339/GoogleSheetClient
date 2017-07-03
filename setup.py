@@ -13,6 +13,7 @@ setup(name='GoogleSheetClient',
       install_requires = [
                 'gspread',
                 'pandas',
+                'json',
                 'oauth2client',
               ],
 )

@@ -42,15 +42,6 @@ class GoogleSheetDownloader(object):
             print("\n")
         return records
 
-    def to_dataframe(self, records):
-        import pandas as pd
-        import json
-        df = pd.read_json(json.dumps(records))
-        try:
-            df.drop(labels='', axis=1, inplace=True)  # drop unnamed columns/excessive index
-        except ValueError:
-            pass
-        return df
 
     def upload_dataframe(self, df, workbook, sheet_name):
         gc = gspread.authorize(self.connection())
@@ -68,3 +59,14 @@ class GoogleSheetDownloader(object):
         print("uploading dataframe, this process might take some time.\n")
         for num in range(0,len(df)):
             sheet.append_row(df.iloc[num])
+
+
+def to_dataframe(records):
+    import pandas as pd
+    import json
+    df = pd.read_json(json.dumps(records))
+    try:
+        df.drop(labels='', axis=1, inplace=True)  # drop unnamed columns/excessive index
+    except ValueError:
+        pass
+    return df
