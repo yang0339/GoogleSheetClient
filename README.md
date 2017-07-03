@@ -15,7 +15,7 @@ Notes: The particular workbook to work with has to be **SHARED** with the email 
 ### installation
 Make sure you installed **pip & git** already. In the command line, type in
 ```python
-pip install git+https://github.com/yang0339/TextPreViz.git
+pip install git+https://github.com/yang0339/GoogleSheetClient.git
 ```
 
 ### Step-by-Step Guide
